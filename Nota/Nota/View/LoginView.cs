@@ -76,7 +76,7 @@ namespace Nota.View
                 }
                 else
                 {
-                    DisplayAlert("Erro", "Algo deu errado", "Ok");
+                    DisplayAlert("Error", "Login ou Senha Incorretos", "Ok");
                 }
 
 
