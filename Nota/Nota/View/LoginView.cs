@@ -14,7 +14,7 @@ namespace Nota.View
         {
             var usuarioViewModel = new UsuarioViewModel();
             this.BindingContext = usuarioViewModel;
-            bool sucesso = false;
+           
 
 
             Label lbLogar = new Label
@@ -48,7 +48,7 @@ namespace Nota.View
 
             };
 
-            entryLogin.SetBinding(Entry.TextProperty, new Binding("SenhaUsuario"));
+            entrySenha.SetBinding(Entry.TextProperty, new Binding("SenhaUsuario"));
 
             Button btnLogar = new Button
             {
@@ -63,22 +63,20 @@ namespace Nota.View
             {
                 Text = "Criar",
                 FontSize = Device.GetNamedSize(NamedSize.Medium, typeof(Button)),
-                HorizontalOptions = LayoutOptions.Center,
+                HorizontalOptions = LayoutOptions.End,
                 VerticalOptions = LayoutOptions.Fill,
 
             };
 
-            btnLogar.Clicked += async (sender,e)=>
+            btnLogar.Clicked += delegate
             {
-                await WS.donwloadUsuarios(usuarioViewModel.EmailUsuario, usuarioViewModel.SenhaUsuario);
-                if (sucesso == true)
+                if(usuarioViewModel.verificarUsuario())
                 {
-                    await Navigation.PushAsync(new LoginView());
+                    Navigation.PushAsync(new PrincipalView());
                 }
                 else
                 {
-
-                    await DisplayAlert("Erro", "Login ou Senha incorretas", "Ok");
+                    DisplayAlert("Erro", "Algo deu errado", "Ok");
                 }
 
 

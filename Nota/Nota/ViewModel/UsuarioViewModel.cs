@@ -10,6 +10,8 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using WS = Nota.WebService.Ws;
+using Nota.DTO;
+using Newtonsoft.Json.Linq;
 
 namespace Nota.ViewModel
 {
@@ -22,7 +24,7 @@ namespace Nota.ViewModel
         }
         //Necessariamente cria-se  um evento  
         public event PropertyChangedEventHandler PropertyChanged;
-        public bool sucesso;
+        public bool sucesso = false;
 
         Usuario usuario;
         /* Generic utilizada para setar os valores em propiedades que estão sendo modificadas,
@@ -82,12 +84,50 @@ namespace Nota.ViewModel
                     return sucesso;
                 }
             }
+
             catch (Exception ex)
             {
                 Debug.WriteLine("Atenção", ex.Message, "Ok");
             }
             return sucesso;
         }
+
+        public bool verificarUsuario()
+        {
+            try
+            {
+                HttpClient client = new HttpClient();
+                var response = client.GetAsync(string.Concat(WS.WS_HOST, WS.LISTAR_USUARIOS)).Result;
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var jsonRecebido = response.Content.ReadAsStringAsync().Result;
+                    GenericDTO dto = JsonConvert.DeserializeObject<GenericDTO>(jsonRecebido);
+                    dto.payload = ((JArray)dto.payload).ToObject<List<Usuario>>();
+                    foreach (Usuario user in (List<Usuario>)dto.payload)
+                    {
+                        if (user.login.Equals(usuario.login) && user.senha.Equals(usuario.senha))
+                        {
+                            sucesso = true;
+                            return sucesso;
+                        }
+                    }
+                 
+                }
+                sucesso = false;
+                return sucesso;
+
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e.Message);
+                throw;
+                
+            }
+        }
+
+
+
 
 
         //Necessita implmentar um metodo,pois possi porpertyChanged

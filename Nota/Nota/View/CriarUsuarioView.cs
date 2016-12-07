@@ -20,7 +20,6 @@ namespace Nota.ViewModel
             var usuarioViewModel = new UsuarioViewModel();
             //Dizendo que o vinculo é com a UsuarioViewModel
             this.BindingContext = usuarioViewModel;
-            bool sucesso = false;
             //Criando label
             Label lbCriarUsuario = new Label
             {
@@ -77,13 +76,12 @@ namespace Nota.ViewModel
             btnCriar.Clicked +=  delegate
             {
 
-                usuarioViewModel.criarUsuario() ;
-
-                if (sucesso == true)
-                {
-                    //Mudar pagina
-                   Navigation.PushAsync(new PrincipalView());
+                if(usuarioViewModel.criarUsuario())
+                { 
+                    //Redireciona para outra pagina
+                    Navigation.PushAsync(new LoginView());
                 }
+
                 else
                 {
                     //Disparar um modal de erro
