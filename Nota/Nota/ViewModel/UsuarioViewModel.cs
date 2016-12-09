@@ -32,10 +32,10 @@ namespace Nota.ViewModel
          Value = Valor que esta em transição 
          PropertyName com CalllerMemberName que diz o nome da propiedade ,tendo como efeito não errar o nome da propiedade referenciada.
          Sendo nula pois não precisa ser passada*/
-        bool SetProperty<T>(ref T storage,T value,[CallerMemberName]string propertyName = null )
+        bool SetProperty<T>( ref T storage,T value,[CallerMemberName]string propertyName = null )
         {
             //Se o valor for o mesmo,significa que a propiedade não esta sendo modificada,assim retornando nulo
-            if (Object.Equals(storage, value))
+            if (Object.Equals( storage, value))
             return false;
 
             //Se for verdadeiro modificara o valor do storage pelo valor novo,e dara trigger no propertyChanged
@@ -126,6 +126,24 @@ namespace Nota.ViewModel
             }
         }
 
+        public List<Usuario> listaUsuarios()
+        {
+            HttpClient client = new HttpClient();
+            var response = client.GetAsync(string.Concat(WS.WS_HOST, WS.LISTAR_USUARIOS)).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                var jsonRecebido = response.Content.ReadAsStringAsync().Result;
+                GenericDTO dto = JsonConvert.DeserializeObject<GenericDTO>(jsonRecebido);
+                dto.payload = ((JArray)dto.payload).ToObject<List<Usuario>>();
+                return (List<Usuario>)dto.payload;
+            }
+
+            else
+            {
+                return null;
+            }
+
+        }
 
 
 

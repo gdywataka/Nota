@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Android.App;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -33,7 +34,7 @@ namespace Nota.View
             };
 
             this.Title = "Xamarin";
-            this.Content = scrollView;
+        
         }
     }
 }

@@ -12,6 +12,7 @@ namespace Nota.DTO
         public Object payload;
         public Boolean operacaoSucedida;
         public String mensagemErro;
+        public List<Object> lista;
 
     }
 }

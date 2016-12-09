@@ -21,7 +21,7 @@ namespace Nota.View
             {
                 Text = "Logue-se",
                 VerticalOptions = LayoutOptions.Center,
-                HorizontalOptions = LayoutOptions.Start,
+                HorizontalOptions = LayoutOptions.Center,
                 FontSize = Device.GetNamedSize(NamedSize.Medium, typeof(Button))
             };
 
@@ -72,7 +72,7 @@ namespace Nota.View
             {
                 if(usuarioViewModel.verificarUsuario())
                 {
-                    Navigation.PushAsync(new PrincipalView());
+                    Navigation.PushAsync(new ListaUsuarioView());
                 }
                 else
                 {
