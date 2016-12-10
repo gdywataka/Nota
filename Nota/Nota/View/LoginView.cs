@@ -72,7 +72,7 @@ namespace Nota.View
             {
                 if(usuarioViewModel.verificarUsuario())
                 {
-                    Navigation.PushAsync(new ListaUsuarioView());
+                    Navigation.PushAsync(new TabPrincipal());
                 }
                 else
                 {

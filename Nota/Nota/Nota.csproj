@@ -46,6 +46,7 @@
     <Compile Include="View\ListaUsuarioView.cs" />
     <Compile Include="View\LoginView.cs" />
     <Compile Include="View\PrincipalView.cs" />
+    <Compile Include="View\TabPrincipal.cs" />
     <Compile Include="WebService\Ws.cs" />
   </ItemGroup>
   <ItemGroup>

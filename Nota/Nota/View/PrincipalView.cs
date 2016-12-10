@@ -24,7 +24,7 @@ namespace Nota.View
             {
                 Padding = 30,
                 Spacing = 10,
-                Children = { texto }
+                Children = { texto } 
             };
 
             ScrollView scrollView = new ScrollView

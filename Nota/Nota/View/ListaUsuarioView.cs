@@ -15,17 +15,17 @@ namespace Nota.View
 {
     class ListaUsuarioView: ContentPage
     {
-        public ObservableCollection<Usuario> usuarios;
+        public ObservableCollection<Usuario> usuarios { get; set; }
         public ListaUsuarioView()
         {
             var usuario = new UsuarioViewModel();
             this.BindingContext = usuario;
             usuarios = new ObservableCollection<Usuario>();
             ListView listaView = new ListView();
-            listaView.RowHeight = 40;
+            listaView.RowHeight = 50;
+
             listaView.ItemTapped += OnTap;
             listaView.ItemTemplate = new DataTemplate(typeof(CelulaUsuario));
-
             listaView.ItemsSource = usuario.listaUsuarios();
             Content = listaView;
         }

@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using System.Reflection.Emit;
+using Nota.Model;
 
 namespace Nota.View
 {
@@ -16,26 +18,28 @@ namespace Nota.View
             var senhaLabel = new Label();
 
             var verticaLayout = new StackLayout();
-            var horizontalLayout = new StackLayout() { BackgroundColor = Color.White};
+            var horizontalLayout = new StackLayout() { BackgroundColor = Color.Blue};
 
-            emailLabel.SetBinding(Label.TextProperty, new Binding("EmailUsuario"));
-            loginLabel.SetBinding(Label.TextProperty, new Binding("LoginUsuario"));
-            senhaLabel.SetBinding(Label.TextProperty, new Binding("SenhaUsuario"));
+            emailLabel.SetBinding(Label.TextProperty, new Binding("email"));
+            loginLabel.SetBinding(Label.TextProperty, new Binding("login"));
+            senhaLabel.SetBinding(Label.TextProperty, new Binding("senha"));
 
             horizontalLayout.Orientation = StackOrientation.Horizontal;
             horizontalLayout.HorizontalOptions = LayoutOptions.Fill;
-            emailLabel.FontSize = 16;
-            loginLabel.FontSize = 16;
-            senhaLabel.FontSize = 16;
+            emailLabel.FontSize = 12;
+            loginLabel.FontSize = 12;
+            senhaLabel.FontSize = 12;
 
-            emailLabel.TextColor = Color.Lime;
-            loginLabel.TextColor = Color.Lime;
-            senhaLabel.TextColor = Color.Lime;
+            emailLabel.TextColor = Color.Olive;
+            loginLabel.TextColor = Color.Olive;
+            senhaLabel.TextColor = Color.Olive;
 
             verticaLayout.Children.Add(emailLabel);
             verticaLayout.Children.Add(loginLabel);
             verticaLayout.Children.Add(senhaLabel);
+
             horizontalLayout.Children.Add(verticaLayout);
+
             View = horizontalLayout;
 
         }
