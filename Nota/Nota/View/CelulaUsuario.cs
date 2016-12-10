@@ -16,7 +16,7 @@ namespace Nota.View
             var senhaLabel = new Label();
 
             var verticaLayout = new StackLayout();
-            var horizontalLayout = new StackLayout() { BackgroundColor = Color.Pink};
+            var horizontalLayout = new StackLayout() { BackgroundColor = Color.White};
 
             emailLabel.SetBinding(Label.TextProperty, new Binding("EmailUsuario"));
             loginLabel.SetBinding(Label.TextProperty, new Binding("LoginUsuario"));
