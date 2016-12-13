@@ -33,8 +33,8 @@ namespace Nota.View
         {
             var list = (ListView)sender;
             var usuario = (list.SelectedItem as Usuario);
-            DisplayAlert("Usuario", "Email: " + usuario.email + "\n" + "Login: " + usuario.login+"Senha: " + usuario.senha, "OK");
-            list.SelectedItem = null;
+            Navigation.PushAsync(new AtualizarUsuarioView(usuario));
+
         }
 
     }

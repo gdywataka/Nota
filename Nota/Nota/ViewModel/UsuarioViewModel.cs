@@ -48,7 +48,7 @@ namespace Nota.ViewModel
         public string EmailUsuario
         {
             //Implementado metodo generico SetProperty na instancia usuario da classe
-            set { SetProperty(ref usuario.email, value); }
+            set { SetProperty( ref usuario.email, value); }
 
             get { return usuario.email; }
         }
@@ -143,6 +143,30 @@ namespace Nota.ViewModel
                 return null;
             }
 
+        }
+
+        public bool atualizarUsuario()
+        {
+            try
+            {
+                var json = JsonConvert.SerializeObject(this.usuario);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+                HttpClient client = new HttpClient();
+                HttpResponseMessage response = client.PostAsync
+                (string.Concat(WS.WS_HOST, WS.ATUALIZAR_USUARIO), content).Result;
+
+                if (response.IsSuccessStatusCode)
+                {
+                    sucesso = true;
+                    return sucesso;
+                }
+            }
+
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Atenção", ex.Message, "Ok");
+            }
+            return sucesso;
         }
 
 

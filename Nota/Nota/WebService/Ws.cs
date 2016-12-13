@@ -18,6 +18,7 @@ namespace Nota.WebService
         public static readonly String WS_HOST = "http://10.0.3.2:9999/PowaNota/WS";
         public static readonly String LISTAR_USUARIOS = "/Usuario/recuperar";
         public static readonly String CRIAR_USUARIO = "/Usuario/criar";
+        public static readonly String ATUALIZAR_USUARIO = "/Usuario/atualizar";
 
         public static async Task<Boolean> donwloadUsuarios(string login, string senha)
         {
